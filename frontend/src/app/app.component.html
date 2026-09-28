@@ -1,6 +1,11 @@
 <nav class="nav">
   <a routerLink="/">Home</a>
   <span> | </span>
-  <a routerLink="/login">Login</a>
+  @if (isLoggedIn) {
+    <span class="user">Xin chào, {{ username }}</span>
+    <button class="link-btn" (click)="onLogout()">Logout</button>
+  } @else {
+    <a routerLink="/login">Login</a>
+  }
 </nav>
 <router-outlet />
