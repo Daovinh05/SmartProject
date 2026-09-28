@@ -1,0 +1,11 @@
+.nav {
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.nav a {
+  color: #1d4ed8;
+  text-decoration: none;
+  margin: 0 0.25rem;
+}
