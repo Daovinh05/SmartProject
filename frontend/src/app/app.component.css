@@ -9,3 +9,22 @@
   text-decoration: none;
   margin: 0 0.25rem;
 }
+
+.user {
+  margin: 0 0.5rem;
+  color: #111;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #1d4ed8;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  margin-left: 0.5rem;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
