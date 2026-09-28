@@ -1,0 +1,9 @@
+<html>
+  <body>
+    <script>
+      // File hỗ trợ silent SSO check của keycloak-js.
+      // Được load trong iframe ẩn, chỉ postMessage URL về parent.
+      parent.postMessage(location.href, location.origin);
+    </script>
+  </body>
+</html>
