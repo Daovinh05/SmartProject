@@ -1,0 +1,11 @@
+<div class="login-container">
+  <h2>Đăng nhập</h2>
+  <p class="hint">
+    Nhấn nút bên dưới để đăng nhập qua Keycloak (realm <code>ssvn</code>).
+    Không nhập username/password tại Angular.
+  </p>
+  <button class="login-btn" (click)="onLogin()">Login with Keycloak</button>
+  @if (error) {
+    <p class="error">{{ error }}</p>
+  }
+</div>
