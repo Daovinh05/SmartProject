@@ -52,6 +52,7 @@ public class MeController {
     body.put("email", user.getEmail());
     body.put("roles", roles);
     body.put("position", user.getPosition());
+    body.put("jobTitle", user.getJobTitle());
     return body;
   }
 

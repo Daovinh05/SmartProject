@@ -42,14 +42,24 @@ public class User {
   @Column(length = 100)
   private String position;
 
+  /** Chức danh hành chính (ví dụ: Kỹ sư, Trưởng phòng, Giám đốc). */
+  @Column(name = "job_title", length = 100)
+  private String jobTitle;
+
   protected User() {}
 
   public User(String keycloakUsername, String username, String fullName, String email, String position) {
+    this(keycloakUsername, username, fullName, email, position, null);
+  }
+
+  public User(
+      String keycloakUsername, String username, String fullName, String email, String position, String jobTitle) {
     this.keycloakUsername = keycloakUsername;
     this.username = username;
     this.fullName = fullName;
     this.email = email;
     this.position = position;
+    this.jobTitle = jobTitle;
   }
 
   public Long getId() {
@@ -74,5 +84,9 @@ public class User {
 
   public String getPosition() {
     return position;
+  }
+
+  public String getJobTitle() {
+    return jobTitle;
   }
 }
