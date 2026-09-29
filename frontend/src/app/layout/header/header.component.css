@@ -1,0 +1,142 @@
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid var(--surface-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--text);
+}
+
+.brand:hover {
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #fff;
+  font-weight: 800;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-text strong {
+  font-size: 1.05rem;
+}
+
+.brand-text small {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.site-nav a {
+  font-weight: 600;
+}
+
+.login-link {
+  padding: 0.45rem 1.1rem;
+  background: var(--primary);
+  color: #fff !important;
+  border-radius: 8px;
+}
+
+.login-link:hover {
+  background: var(--primary-dark);
+  text-decoration: none;
+}
+
+.user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.4rem;
+  background: #fff;
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(24, 52, 98, 0.12);
+  color: var(--text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.user::before {
+  content: attr(data-initial);
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-btn {
+  background: #fff;
+  border: 1px solid var(--surface-border);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(24, 52, 98, 0.12);
+  color: var(--primary);
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.4rem 1rem;
+  white-space: nowrap;
+}
+
+.link-btn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .brand-text small {
+    display: none;
+  }
+
+  .user {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.7rem 0.25rem 0.3rem;
+  }
+
+  .link-btn {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+  }
+}

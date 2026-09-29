@@ -1,0 +1,13 @@
+.site-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  border-top: 1px solid var(--surface-border);
+  z-index: 10;
+}

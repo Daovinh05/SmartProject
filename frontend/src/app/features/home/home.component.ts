@@ -5,51 +5,16 @@ import { ApiError, UserProfile } from '../../core/user/user.model';
 import { UserService } from '../../core/user/user.service';
 
 /**
- * Task 7 — Home hiển thị profile từ Backend (GET /api/me).
- * - Chưa login: hiện link Login.
- * - Đã login: gọi /api/me (token do interceptor tự gắn), hiện
- *   username/name, roles, position; lỗi 401/403/404/backend-down đều có
- *   thông báo riêng.
+ * Trang chủ SmartProject.
+ * - Khách: hero giới thiệu + CTA đăng nhập (h1/p chuẩn SEO).
+ * - Đã login: thẻ hồ sơ từ GET /api/me (username, roles, position).
  */
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [RouterLink],
-  template: `
-    <div style="max-width: 640px; margin: 3rem auto; text-align: center;">
-      <h2>SmartProject</h2>
-      @if (isLoggedIn) {
-        @if (loading) {
-          <p>Đang tải thông tin...</p>
-        } @else if (profile) {
-          <p>Xin chào, {{ profile.name }}!</p>
-          <p>Username: {{ profile.username }}</p>
-          @if (profile.email) {
-            <p>Email: {{ profile.email }}</p>
-          }
-          <p>Role: {{ profile.roles.join(', ') || '—' }}</p>
-          <p>Vị trí: {{ profile.position || '—' }}</p>
-        } @else if (profileError) {
-          <p style="color: #b91c1c;">{{ profileError }}</p>
-          @if (needsLogin) {
-            <p><a routerLink="/login">Đăng nhập lại</a></p>
-          }
-        }
-        <button
-          (click)="onLogout()"
-          style="margin-top: 1rem; padding: 0.6rem 1.4rem; border: none; border-radius: 8px; background: #b91c1c; color: #fff; cursor: pointer;"
-        >
-          Logout
-        </button>
-        @if (error) {
-          <p style="color: #b91c1c;">{{ error }}</p>
-        }
-      } @else {
-        <p>Bạn chưa đăng nhập.</p>
-        <a routerLink="/login">Đi tới Login</a>
-      }
-    </div>
-  `,
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   isLoggedIn = false;
@@ -93,11 +58,11 @@ export class HomeComponent implements OnInit {
   async onLogout(): Promise<void> {
     this.error = null;
     try {
-      await this.auth.logout(window.location.origin + '/');
+      await this.auth.logout(window.location.origin + '/login');
       this.isLoggedIn = false;
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     } catch {
-      this.error = 'Logout thất bại. Thử lại.';
+      this.error = 'Đăng xuất thất bại. Thử lại.';
     }
   }
 }

@@ -6,6 +6,7 @@ export interface UserProfile {
   email?: string;
   roles: string[];
   position?: string;
+  jobTitle?: string;
 }
 
 /** Lỗi đã dịch để UI hiển thị, giữ nguyên status gốc cho component xử lý. */

@@ -1,11 +1,5 @@
-<nav class="nav">
-  <a routerLink="/">Home</a>
-  <span> | </span>
-  @if (isLoggedIn) {
-    <span class="user">Xin chào, {{ username }}</span>
-    <button class="link-btn" (click)="onLogout()">Logout</button>
-  } @else {
-    <a routerLink="/login">Login</a>
-  }
-</nav>
-<router-outlet />
+<app-header />
+<main class="page">
+  <router-outlet />
+</main>
+<app-footer />

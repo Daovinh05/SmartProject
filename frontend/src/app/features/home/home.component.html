@@ -1,0 +1,54 @@
+<section class="hero" aria-labelledby="page-title">
+  @if (isLoggedIn) {
+    <article class="card profile-card" aria-label="Hồ sơ người dùng">
+      @if (loading) {
+        <p>Đang tải thông tin...</p>
+      } @else if (profile) {
+        <h1 id="page-title">Xin chào, {{ profile.username }}!</h1>
+        <dl class="profile-list">
+          <div>
+            <dt>Tên đăng nhập</dt>
+            <dd>{{ profile.username }}</dd>
+          </div>
+          @if (profile.email) {
+            <div>
+              <dt>Email</dt>
+              <dd>{{ profile.email }}</dd>
+            </div>
+          }
+          <div>
+            <dt>Vai trò hệ thống</dt>
+            <dd>{{ profile.roles.join(', ') || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Vị trí công tác</dt>
+            <dd>{{ profile.position || '—' }}</dd>
+          </div>
+          <div>
+            <dt>Chức danh</dt>
+            <dd>{{ profile.jobTitle || '—' }}</dd>
+          </div>
+        </dl>
+      } @else if (profileError) {
+        <h1 id="page-title">Không tải được hồ sơ</h1>
+        <p class="text-error">{{ profileError }}</p>
+        @if (needsLogin) {
+          <p><a routerLink="/login">Đăng nhập lại</a></p>
+        }
+      }
+      <button class="btn-danger" (click)="onLogout()">Đăng xuất</button>
+      @if (error) {
+        <p class="text-error">{{ error }}</p>
+      }
+    </article>
+  } @else {
+    <div class="card hero-card">
+      <h1 id="page-title">Cổng thông tin nội bộ Smart Solutions Việt Nam</h1>
+      <p class="text-secondary">
+        Đăng nhập một lần bằng tài khoản Keycloak để xem chức danh,
+        vị trí công tác và thông tin hồ sơ của bạn.
+      </p>
+      <a routerLink="/login" class="btn-primary">Đăng nhập ngay</a>
+    </div>
+  }
+</section>
