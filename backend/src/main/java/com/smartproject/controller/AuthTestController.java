@@ -34,12 +34,11 @@ public class AuthTestController {
       }
     }
     return Map.of(
-        "authenticated",authentication.isAuthenticated(),
-        "username",
-        username,
+        "authenticated", authentication.isAuthenticated(),
+        "username", username,
         "authorities",
-        authentication.getAuthorities().stream()
-            .map(GrantedAuthority::getAuthority)
-            .collect(Collectors.toList()));
+            authentication.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.toList()));
   }
 }
