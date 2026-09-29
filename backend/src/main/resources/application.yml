@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: smartproject-backend
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Task 4: lấy từ config, không hardcode trong code.
+          # Có thể override bằng env: JWT_ISSUER_URI
+          issuer-uri: ${JWT_ISSUER_URI:https://id.smartsolutionvn.com.vn/realms/ssvn}
+
+app:
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200}
