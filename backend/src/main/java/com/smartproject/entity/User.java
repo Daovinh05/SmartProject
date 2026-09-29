@@ -8,16 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 /**
- * Task 6 — Application user, liên kết với Keycloak qua {@code keycloakUserId}.
+ * Task 6 — Application user, liên kết với Keycloak qua {@code keycloakUsername}.
  *
- * <p>Quy tắc mapping (theo plan.md):
+ * <p>Lưu ý quan trọng (đã inspect token thật ngày 29/09/2026): JWT của realm {@code ssvn}
+ * KHÔNG có claim {@code sub}, nên không thể dùng subject làm khóa liên kết như kế hoạch
+ * ban đầu. Claim ổn định duy nhất còn lại là {@code preferred_username} — dùng nó thay thế.
+ * Nếu sau này realm bổ sung {@code sub} thì migrate sang {@code sub} theo plan.md.
  *
- * <ul>
- *   <li>Dùng Keycloak subject ({@code sub} trong JWT) làm khóa liên kết,
- *       KHÔNG dùng username.</li>
- *   <li>Không trả password/sensitive field — entity này vốn không có password
- *       vì xác thực do Keycloak giữ.</li>
- * </ul>
+ * <p>Không có password/sensitive field vì xác thực do Keycloak giữ.
  */
 @Entity
 @Table(name = "users")
@@ -27,9 +25,9 @@ public class User {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  /** Keycloak subject (claim {@code sub}) — khóa liên kết duy nhất. */
-  @Column(name = "keycloak_user_id", nullable = false, unique = true, length = 64)
-  private String keycloakUserId;
+  /** Keycloak {@code preferred_username} — khóa liên kết duy nhất (thay sub). */
+  @Column(name = "keycloak_username", nullable = false, unique = true, length = 100)
+  private String keycloakUsername;
 
   @Column(nullable = false, unique = true, length = 100)
   private String username;
@@ -46,8 +44,8 @@ public class User {
 
   protected User() {}
 
-  public User(String keycloakUserId, String username, String fullName, String email, String position) {
-    this.keycloakUserId = keycloakUserId;
+  public User(String keycloakUsername, String username, String fullName, String email, String position) {
+    this.keycloakUsername = keycloakUsername;
     this.username = username;
     this.fullName = fullName;
     this.email = email;
@@ -58,8 +56,8 @@ public class User {
     return id;
   }
 
-  public String getKeycloakUserId() {
-    return keycloakUserId;
+  public String getKeycloakUsername() {
+    return keycloakUsername;
   }
 
   public String getUsername() {

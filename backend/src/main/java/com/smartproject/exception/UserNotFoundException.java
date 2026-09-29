@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.NOT_FOUND)
 public class UserNotFoundException extends RuntimeException {
 
-  public UserNotFoundException(String keycloakUserId) {
-    super("Không tìm thấy user ứng với Keycloak subject: " + keycloakUserId);
+  public UserNotFoundException(String keycloakUsername) {
+    super("Không tìm thấy user ứng với Keycloak username: " + keycloakUsername);
   }
 }

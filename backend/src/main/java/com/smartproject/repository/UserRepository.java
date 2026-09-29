@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-  /** Tìm user nội bộ bằng Keycloak subject. */
-  Optional<User> findByKeycloakUserId(String keycloakUserId);
+  /** Tìm user nội bộ bằng Keycloak preferred_username. */
+  Optional<User> findByKeycloakUsername(String keycloakUsername);
 }
